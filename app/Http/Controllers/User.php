@@ -87,4 +87,25 @@ class User extends Controller
             return back()->withErrors(['error' => 'Registro Fallido. Por favor revisar sus credenciales.']);
         }
     }
+
+    public function profile()
+    {
+        if (!session()->has('api_token')) {
+            return view('errors.403');
+        }
+        $apiUrl = env('API');
+        $token = session('api_token');
+    
+        $response = Http::withHeaders([
+            'Authorization' => $token ? 'Bearer ' . $token : '',
+        ])->get($apiUrl . '/user-profile');
+    
+        if ($response->successful()) {
+            $data = $response->json()['data'];
+            return view('profile', ['data' => (object) $data]);
+        } else {
+            return back()->withErrors(['error' => 'Error. Por favor corrobora tus datos.']);
+        }
+    }
+    
 }

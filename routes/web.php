@@ -30,27 +30,34 @@ Route::get('/form', [User::class, 'formUser'])
 Route::post('/register', [User::class, 'registerUser'])
     ->name('form.register');
 
-// grupo de rutas para el controlador de noticias
-Route::group(['prefix' => 'news'], function () {
-    Route::get('/entertainment', [News::class, 'Entertainment'])
-    ->name('entertainment.index');
 
-    Route::get('/business', [News::class, 'Business'])
-        ->name('business.index');
-
-    Route::get('/health', [News::class, 'Health'])
-        ->name('health.index');
-
-    Route::get('/science', [News::class, 'Science'])
-        ->name('science.index');
-
-    Route::get('/sports', [News::class, 'Sports'])
-        ->name('sports.index');
-
-    Route::get('/technology', [News::class, 'Technology'])
-        ->name('technology.index');
-
-    Route::post('/news/detail', [News::class, 'detail'])
-        ->name('news.detail');
-
+Route::group(['prefix'=> 'royale'], function (){
+    Route::get('/profile', [User::class, 'profile'])
+        ->name('user.profile');
 });
+
+// grupo de rutas para el controlador de noticias
+// Route::group(['prefix' => 'news'], function () {
+//     Route::get('/entertainment', [News::class, 'Entertainment'])
+//     ->name('entertainment.index');
+
+//     Route::get('/business', [News::class, 'Business'])
+//         ->name('business.index');
+
+//     Route::get('/health', [News::class, 'Health'])
+//         ->name('health.index');
+
+//     Route::get('/science', [News::class, 'Science'])
+//         ->name('science.index');
+
+//     Route::get('/sports', [News::class, 'Sports'])
+//         ->name('sports.index');
+
+//     Route::get('/technology', [News::class, 'Technology'])
+//         ->name('technology.index');
+
+//     Route::post('/news/detail', [News::class, 'detail'])
+//         ->name('news.detail');
+
+// });
+
